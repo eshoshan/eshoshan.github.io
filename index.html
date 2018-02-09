@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <style>
+      code {
+        display: inline;
+        white-space: pre-wrap;
+      }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <body style="background-color: ghostwhite; padding:30px;">
+    <h1 style="color: midnightblue;">Setting up ExpressJS server</h1>
+    <ol>
+      <li> <code style="color: #0e3626"> mkdir waffle-fries </code> </li>
+      <li> <code style="color: #0e3626"> cd waffle-fries </code> </li>
+      <li> <code style="color: #0e3626"> npm init </code> (press enter a million times) </li>
+      <li> <code style="color: #0e3626"> npm install express --save </code> </li>
+      <li> Add additional script in package.json
+        <code> "start": "node index.js" </code>
+      <li> Create file <code style="color: #0e3626"> index.html </code> </li>
+      <li> Put something fun in your <code style="color: #0e3626"> index.html </code> file </li>
+      <li> Create file <code style="color: #0e3626"> index.js </code> </li>
+      <li> Paste the following into <code style="color: #0e3626"> index.js </code>
+      <div>
+        <code>
+          var express = require('express');
+          var path = require('path');
+          var port = process.env.PORT || 3000;
+          var app = express();
+          app.get('/', function(req, res) {
+            res.sendFile(path.join(__dirname, './index.html'));
+          });
+
+          app.listen(port, function(err) {
+            if (err) {
+              console.log(err);
+            }
+          });
+        </code>
+      </div>
+      </li>
+      <li> <code style="color: #0e3626"> node index.js </code></li>
+      <li> Go to <code style="color: #0e3626">http://localhost:3000</code></li>
+      <li> See your page! </li>
+    </ol>
+
+    <h1 style="color: midnightblue;"> Deploying to Heroku </h1>
+
+    <ol>
+      <li> Create a heroku account if you do not already have one at www.heroku.com </li>
+      <li><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up"> Install heroku cli </a></li>
+      <li> Create a new repo in git and push changes from Part 1 </li>
+        <ul>
+          <li> Go to github and create a new repository</li>
+          <li> Copy HTTPS clone url from github </li>
+          <li> <code style="color: #0e3626"> git init </code> </li>
+          <li> <code style="color: #0e3626"> git remote add origin {HTTPS url} </code> </li>
+          <li> <code style="color: #0e3626"> git add . </code> </li>
+          <li> <code style="color: #0e3626"> git commit -m "First commit" </code> </li>
+          <li> <code style="color: #0e3626"> git push origin master </code> </li>
+        </ul>
+      <li> <code style="color: #0e3626"> heroku login </code> (with your heroku credentials) </li>
+      <li> <code style="color: #0e3626"> heroku create </code> <desired-name> </li>
+      <li> <code style="color: #0e3626"> git push heroku master </code> </li>
+      <li> <code style="color: #0e3626"> heroku open </code> </li>
+    </ol>
+    <h6 style="color:#e83e8c;">Note: when testing locally, your change should be reflected at <code style="color: #0e3626">http://localhost:3000</code></h3>
+    <h6 style="color:#e83e8c;">When you want to deploy any changes to heroku, run <code style="color: #0e3626"> git push origin master </code> AND <code style="color: #0e3626"> git push heroku master</code>. Your change should then be reflected at your heroku site</h3>
+  </body>
+</html>
